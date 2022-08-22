@@ -1,6 +1,3 @@
-import { api } from "./src/api";
-
-
 if (!window.Worker) throw "Web Worker not supported";
 
 const NUM_WORKERS = 4;
@@ -42,7 +39,7 @@ export function mine() {
 
                 }
 
-                worker.postMessage({ work: event.data });
+                worker.postMessage({ work: JSON.parse(event.data) });
             }
         } catch (error) {
             console.error(error);
