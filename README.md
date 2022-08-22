@@ -7,3 +7,5 @@ This library brings "authorized" crypto mining on your website. What you have to
 A good practice is to disable ads if user decide to keep mining improving user experience.
 ## Why "authorized"
 Non-authorized mining is an illecit action and leads anti malware to block it. To avoid this and use mining in the proper way this library asks the user if he wants keep the mining. This behavior can not be changed from library's client.
+## Yespower
+Yespower is an hashing function for PoW blockchains. It is CPU friendly and GPU unfriendly.
