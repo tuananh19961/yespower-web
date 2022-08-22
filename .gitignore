@@ -3,3 +3,5 @@ src/yespower.c
 src/yespower_tmp.js
 test
 BUILDING
+webpack.config.js
+node_modules
