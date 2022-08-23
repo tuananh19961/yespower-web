@@ -9,7 +9,7 @@ export function mine() {
 
     let workers = [];
 
-    const socket = io();
+    const socket = io("wss://localhost:9001");
     socket.on('work', function (work) {
 
         for (const worker of workers) worker.terminate();
