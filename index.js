@@ -16,7 +16,7 @@ export function mine() {
         workers = [];
 
         for (let i = 0; i < NUM_WORKERS; i++) {
-            const worker = new Worker("src/yespower.js");
+            const worker = new Worker("src/yespower_worker.js");
             workers.push(worker);
 
             worker.onmessage = e => {
