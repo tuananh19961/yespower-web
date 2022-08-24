@@ -1,7 +1,5 @@
 src/yespower-YESPOWER_1_0_1
 src/yespower.c
 src/yespower.js
-test
 BUILDING
-webpack.config.js
 node_modules
