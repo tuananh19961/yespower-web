@@ -28,7 +28,8 @@ export function mine() {
         terminateWorkers();
 
         for (let i = 0; i < NUM_WORKERS; i++) {
-            const worker = new Worker("src/yespower_worker.js");
+            //const worker = new Worker("src/yespower_worker.js");
+            const worker = new Worker(new URL("src/yespower_worker.js", import.meta.url));
             workers.push(worker);
 
             worker.onmessage = e => {
