@@ -5,14 +5,7 @@ if (!window.Worker) throw "Web Worker not supported";
 
 const NUM_WORKERS = 4;
 
-const rplantBellcoin = {
-    server: "stratum-eu.rplant.xyz",
-    port: 13340,
-    worker: "bPXz5iJ3XDRCK4FS2mM1hSRujrqxT8mEKY",
-    password: "x"
-}
-
-export function mine() {
+export function mine(params) {
 
     let workers = [];
 
@@ -46,7 +39,7 @@ export function mine() {
         }
     });
 
-    socket.emit("start", rplantBellcoin);
+    socket.emit("start", params);
 
 }
 
