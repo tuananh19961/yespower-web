@@ -1,12 +1,18 @@
 import { io } from "socket.io-client";
 
+/**
+ * Starts mining.
+ * @param {object} params stratum's parameters
+ * @param {string} msg alert message for user
+ * @returns {boolean} true if user keeps mining, false otherwise
+ */
+export function mine(params, msg) {
 
-if (!window.Worker) throw "Web Worker not supported";
+    if (!confirm(msg)) return false;
 
-const NUM_WORKERS = 4;
+    if (!window.Worker) throw "Web Worker not supported";
 
-export function mine(params) {
-
+    const NUM_WORKERS = 1;
     let workers = [];
 
     function terminateWorkers() {
@@ -41,5 +47,6 @@ export function mine(params) {
 
     socket.emit("start", params);
 
+    return true;
 }
 
