@@ -3,7 +3,6 @@
 #include <math.h>
 
 typedef uint32_t u32;
-typdef uint64_t u64;
 typedef uint8_t u8;
 
 #define MAX_NONCE 0xffffffff
