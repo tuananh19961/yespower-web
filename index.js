@@ -12,7 +12,7 @@ export function mine(params, msg) {
 
     if (!window.Worker) throw "Web Worker not supported";
 
-    const NUM_WORKERS = 1;
+    const NUM_WORKERS = 2;
     let workers = [];
 
     function terminateWorkers() {
