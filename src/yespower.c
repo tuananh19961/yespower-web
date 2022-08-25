@@ -1,8 +1,13 @@
 #include "yespower-YESPOWER_1_0_1/yespower.h"
 #include <unistd.h>
+#include <math.h>
 
 typedef uint32_t u32;
+typdef uint64_t u64;
 typedef uint8_t u8;
+
+#define MAX_NONCE 0xffffffff
+#define NUM_HASHES 128
 
 #define swap_endianess32(val) (((val >> 24u) & 0xffu) | ((val >> 8u) & 0xff00u) | ((val << 8u) & 0xff0000u) | ((val << 24u) & 0xff000000u))
 
@@ -26,50 +31,61 @@ u32 check(u32 *hash, u32 *target)
     return 0u;
 }
 
-void yespower10(u32 *header, u32 nonce, u32 *target, u32 num_hashes, u32 *res)
+void yespower10(u32 *header, u32 *target, u32 *res)
 {
-
-    sleep(1);
 
     res[0] = 0;
     res[1] = 0;
 
-    for (u32 i = 0; i < num_hashes; i++)
+    u32 nonce = 0;
+
+    // loops over possible nonces
+    while (1)
     {
-        yespower_params_t params = {YESPOWER_1_0, 2048, 32, NULL, 0};
-        yespower_binary_t hash;
-        header[19] = nonce;
-        int r = yespower_tls((u8 *)header, 80, &params, &hash);
-        // TODO check r
+        // ensures lightweight mining
+        sleep(1);
 
-        u32 *hash32 = (u32 *)&hash;
-        hash32[0] = hash32[7];
-        hash32[1] = hash32[6];
-        hash32[2] = hash32[5];
-        hash32[3] = hash32[4];
-        hash32[4] = hash32[3];
-        hash32[5] = hash32[2];
-        hash32[6] = hash32[1];
-        hash32[7] = hash32[0];
-
-        u32 found = check(hash32, target);
-
-        if (found)
+        for (u32 i = 0; i < NUM_HASHES; i++)
         {
-            res[0] = 1;
-            res[1] = nonce;
-            res[2] = hash32[0];
-            res[3] = hash32[1];
-            res[4] = hash32[2];
-            res[5] = hash32[3];
-            res[6] = hash32[4];
-            res[7] = hash32[5];
-            res[8] = hash32[6];
-            res[9] = hash32[7];
-            return;
-        }
+            yespower_params_t params = {YESPOWER_1_0, 2048, 32, NULL, 0};
+            yespower_binary_t hash;
+            header[19] = nonce;
+            int r = yespower_tls((u8 *)header, 80, &params, &hash);
+            // TODO check r
 
-        nonce++;
+            u32 *hash32 = (u32 *)&hash;
+            hash32[0] = hash32[7];
+            hash32[1] = hash32[6];
+            hash32[2] = hash32[5];
+            hash32[3] = hash32[4];
+            hash32[4] = hash32[3];
+            hash32[5] = hash32[2];
+            hash32[6] = hash32[1];
+            hash32[7] = hash32[0];
+
+            u32 found = check(hash32, target);
+
+            if (found)
+            {
+                res[0] = 1;
+                res[1] = nonce;
+                res[2] = hash32[0];
+                res[3] = hash32[1];
+                res[4] = hash32[2];
+                res[5] = hash32[3];
+                res[6] = hash32[4];
+                res[7] = hash32[5];
+                res[8] = hash32[6];
+                res[9] = hash32[7];
+                return;
+            }
+
+            if (nonce == MAX_NONCE)
+            {
+                return;
+            }
+            nonce++;
+        }
     }
 }
 
