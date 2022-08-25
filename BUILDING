@@ -1,0 +1,1 @@
+emcc -msimd128 -O3 yespower-YESPOWER_1_0_1/sha256.c yespower-YESPOWER_1_0_1/yespower-opt.c yespower.c -o yespower.js -sEXPORTED_FUNCTIONS="['_yespower10','_yespower10_test','_malloc','_free']" -sEXPORTED_RUNTIME_METHODS="['cwrap','getValue']" -s SINGLE_FILE=1
