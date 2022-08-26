@@ -40,6 +40,6 @@ if (!mining) {
 }
 ```
 ## Build
-This module is tested over Webpack 5. I don't know if it works with other bundle system. Please open an [issue](https://github.com/MarcoCiaramella/yespower-web/issues) if you notice errors in console.
+This module is tested over Webpack 5. I don't know if it works with other bundle systems. Please open an [issue](https://github.com/MarcoCiaramella/yespower-web/issues) if you notice errors in console.
 ## Note
 I want repeat this point. Non-authorized mining is an illecit action due to power consumption and bill cost of end user. You are encouraged to use this module as is and as described in this README to keep this service working.
