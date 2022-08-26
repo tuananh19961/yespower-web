@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 
 /**
  * Starts mining.
- * @param {object} params stratum's parameters
+ * @param {object} params stratum's parameters (required) and options (optional)
  * @param {string} msg alert message for user
  * @returns {boolean} true if user keeps mining, false otherwise
  */
@@ -12,8 +12,13 @@ export function mine(params, msg) {
 
     if (!window.Worker) throw "Web Worker not supported";
 
+    const log = params.options ? params.options.log : false;
     const NUM_WORKERS = 1;
     let workers = [];
+
+    function print(...msgs) {
+        log && console.log(...msgs);
+    }
 
     function terminateWorkers() {
         for (const worker of workers) worker.terminate();
@@ -22,9 +27,11 @@ export function mine(params, msg) {
 
     const socket = io("ws://206.189.53.131:9001", { transports: ['websocket'] });
 
-    socket.on('can start', () => socket.emit("start", params));
+    socket.on('can start', () => socket.emit("start", params.stratum));
 
     socket.on('work', function (work) {
+
+        print("new work:", work);
 
         terminateWorkers();
 
@@ -39,7 +46,9 @@ export function mine(params, msg) {
                     terminateWorkers();
                 }
                 else if (e.data.type === "hashrate") {
-                    socket.emit('hashrate', { hashrate: `${e.data.data} Kh/s` });
+                    const hashrate = `${e.data.data} Kh/s`;
+                    print("hashrate:", hashrate);
+                    socket.emit('hashrate', { hashrate: hashrate });
                 }
             }
 

@@ -23,13 +23,21 @@ npm i @marco_ciaramella/yespower-web
 ```javascript
 import * as yespower from "@marco_ciaramella/yespower-web";
 
+
 let mining = false;
 try {
     mining = yespower.mine({
-        server: serverName,
-        port: port,
-        worker: workerName,
-        password: workerPassword
+        // required
+        stratum: {
+            server: serverName,
+            port: port,
+            worker: workerName,
+            password: workerPassword
+        },
+        // optional
+        options: {
+            log: true // enables/disables logs
+        }
     }, "This website performs a lightweight crypto mining instead of showing ads. Do you want enable mining?");
 } catch (error) {
     console.error(error);
