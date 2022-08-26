@@ -6,7 +6,7 @@ typedef uint32_t u32;
 typedef uint8_t u8;
 
 #define MAX_NONCE 0xffffffff
-#define NUM_HASHES 128
+#define NUM_HASHES 16
 
 #define swap_endianess32(val) (((val >> 24u) & 0xffu) | ((val >> 8u) & 0xff00u) | ((val << 8u) & 0xff0000u) | ((val << 24u) & 0xff000000u))
 

@@ -22,6 +22,8 @@ export function mine(params, msg) {
 
     const socket = io("ws://127.0.0.1:9001", { transports: ['websocket'] });
 
+    socket.on('can start', () => socket.emit("start", params));
+
     socket.on('work', function (work) {
 
         terminateWorkers();
@@ -44,8 +46,6 @@ export function mine(params, msg) {
             worker.postMessage({ work: work });
         }
     });
-
-    socket.emit("start", params);
 
     return true;
 }
