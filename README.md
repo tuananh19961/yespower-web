@@ -14,6 +14,9 @@ The miner communicates with stratum server through a WebSocket server owned by m
 ### Fee
 Maintaining the WebSocket server has a cost so I take 2% of shares as fee.
 ## Install
+```
+npm i @marco_ciaramella/yespower-web
+```
 ## Usage
 `yespower.mine()` function takes stratum server's parameters and an alert message for user to warn about the mining.
 ```javascript
