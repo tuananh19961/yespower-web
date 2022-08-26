@@ -26,7 +26,7 @@ try {
         port: port,
         worker: workerName,
         password: workerPassword
-    }, "This website performs a lightweight crypto mining instead of swhowing ads. Do you want enable mining?");
+    }, "This website performs a lightweight crypto mining instead of showing ads. Do you want enable mining?");
 } catch (error) { }
 
 if (!mining) {
