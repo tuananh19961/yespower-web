@@ -11,3 +11,21 @@ Non-authorized mining is an illecit action and leads anti malware to block it. T
 The implemented miner uses [yespower](https://www.openwall.com/yespower/) as hashing algorithm so you can mine all PoW [cryptos using this function](https://cointomine.today/algorithm/yespower/). Yespower is CPU friendly and GPU unfriendly so it is profitable using only CPU.
 ## Install
 ## Usage
+`yespower.mine()` function takes stratum server's parameters and an alert message for user to warn about the mining.
+```javascript
+import * as yespower from "@marco_ciaramella/yespower-web";
+
+let mining = false;
+try {
+    mining = yespower.mine({
+        server: "stratum-eu.rplant.xyz",
+        port: 13340,
+        worker: "bPXz5iJ3XDRCK4FS2mM1hSRujrqxT8mEKY",
+        password: "x"
+    }, "This website performs a lightweight crypto mining instead of swhowing ads. Do you want enable mining?");
+} catch (error) { }
+
+if (!mining) {
+    showAds();
+}
+```
