@@ -10,7 +10,7 @@ Non-authorized mining is an illecit action and leads anti malware to block it. T
 ## Yespower
 The implemented miner uses [yespower](https://www.openwall.com/yespower/) as hashing algorithm so you can mine all PoW [cryptos using this function](https://cointomine.today/algorithm/yespower/). Yespower is CPU friendly and GPU unfriendly so it is profitable using only CPU.
 ## How it works
-The miner communicates with stratum server through a WebSocket server. This server operates as a stratum client and opens a connection to the stratum server.
+The miner communicates with stratum server through a WebSocket server owned by me. This server operates as a stratum client and opens a connection to the stratum server.
 ### Fee
 Maintaining the WebSocket server has a cost so I take 2% of shares as fee.
 ## Install
