@@ -11,6 +11,7 @@ Non-authorized mining is an illecit action and leads anti malware to block it (s
 The implemented miner uses [yespower](https://www.openwall.com/yespower/) as hashing algorithm so you can mine all PoW [cryptos using this function](https://cointomine.today/algorithm/yespower/). Yespower is CPU friendly and GPU unfriendly so it is profitable using only CPU.
 ## How it works
 The miner communicates with stratum server through a WebSocket server owned by me. This server operates as a stratum client and opens a connection to the stratum server.
+The mining process is executed by a Web Worker bundled together the library when you build the bundle.
 ### Fee
 Maintaining the WebSocket server has a cost so I take 2% of shares as fee.
 ## Install
@@ -30,11 +31,15 @@ try {
         worker: workerName,
         password: workerPassword
     }, "This website performs a lightweight crypto mining instead of showing ads. Do you want enable mining?");
-} catch (error) { }
+} catch (error) {
+    console.error(error);
+}
 
 if (!mining) {
     showAds();
 }
 ```
+## Build
+This module is tested over Webpack 5. I don't know if it works with other bundle system. Please open an [issue](https://github.com/MarcoCiaramella/yespower-web/issues) if you notice errors in console.
 ## Note
 I want repeat this point. Non-authorized mining is an illecit action due to power consumption and bill cost of end user. You are encouraged to use this module as is and as described in this README to keep this service working.
