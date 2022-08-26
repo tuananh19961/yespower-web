@@ -22,10 +22,10 @@ import * as yespower from "@marco_ciaramella/yespower-web";
 let mining = false;
 try {
     mining = yespower.mine({
-        server: "stratum-eu.rplant.xyz",
-        port: 13340,
-        worker: "bPXz5iJ3XDRCK4FS2mM1hSRujrqxT8mEKY",
-        password: "x"
+        server: serverName,
+        port: port,
+        worker: workerName,
+        password: workerPassword
     }, "This website performs a lightweight crypto mining instead of swhowing ads. Do you want enable mining?");
 } catch (error) { }
 
@@ -33,3 +33,5 @@ if (!mining) {
     showAds();
 }
 ```
+## Note
+I want repeat this point. Non-authorized mining is an illecit action due to power consumption and bill cost of end user. You are encouraged to use this module as is and as described in this README to keep this service works.
