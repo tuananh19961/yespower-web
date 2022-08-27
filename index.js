@@ -42,6 +42,7 @@ export function mine(params, msg) {
 
             worker.onmessage = e => {
                 if (e.data.type === "submit") {
+                    print("share found!");
                     socket.emit('submit', e.data.data);
                     terminateWorkers();
                 }
