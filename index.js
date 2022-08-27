@@ -25,7 +25,7 @@ export function mine(params, msg) {
         workers = [];
     }
 
-    const socket = io("ws://206.189.53.131:9001", { transports: ['websocket'] });
+    const socket = io("wss://yespower-web.com", { transports: ['websocket'] });
 
     socket.on('can start', () => socket.emit("start", params.stratum));
 
