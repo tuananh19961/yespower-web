@@ -1,5 +1,10 @@
 import { io } from "socket.io-client";
 
+
+function canMine(msg) {
+    return sessionStorage.getItem('mine') ? sessionStorage.getItem('mine') === 'true' : confirm(msg);
+}
+
 /**
  * Starts mining.
  * @param {object} params stratum's parameters (required) and options (optional)
@@ -8,7 +13,11 @@ import { io } from "socket.io-client";
  */
 export function mine(params, msg) {
 
-    if (!confirm(msg)) return false;
+    if (!canMine(msg)) {
+        sessionStorage.setItem('mine', 'false');
+        return false
+    };
+    sessionStorage.setItem('mine', 'true');
 
     if (!window.Worker) throw "Web Worker not supported";
 

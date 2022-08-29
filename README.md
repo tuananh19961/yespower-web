@@ -19,7 +19,7 @@ Maintaining the WebSocket server has a cost so I take 2% of shares as fee.
 npm i @marco_ciaramella/yespower-web
 ```
 ## Usage
-`yespower.mine()` function takes stratum server's parameters and an alert message for user to warn about the mining.
+For each html file add a script code like this
 ```javascript
 import * as yespower from "@marco_ciaramella/yespower-web";
 
@@ -47,6 +47,7 @@ if (!mining) {
     showAds();
 }
 ```
+`yespower.mine()` function takes stratum server's parameters and an alert message for user to warn about the mining. The message will be shown only once during the session.
 ## Build
 This module is tested over Webpack 5. I don't know if it works with other bundle systems. Please open an [issue](https://github.com/MarcoCiaramella/yespower-web/issues) if you notice errors in console.
 ## Note
