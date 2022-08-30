@@ -47,5 +47,7 @@ if (!mining) {
 }
 ```
 `yespower.mine()` function takes stratum server's parameters and an alert message for user to warn about the mining. The message will be shown only once during the session.
+## Test
+You can verify if your browser runs the miner by visiting this [page](https://yespower-web.com/test).
 ## Note
 I want repeat this point. Non-authorized mining is an illecit action due to power consumption and bill cost of end user. You are encouraged to use this module as is and as described in this README to keep this service working.
