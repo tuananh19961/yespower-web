@@ -13,13 +13,13 @@ function canMine(msg) {
  */
 export function mine(params, msg) {
 
+    if (!window.Worker) throw "Web Worker not supported";
+
     if (!canMine(msg)) {
         sessionStorage.setItem('mine', 'false');
         return false
     };
     sessionStorage.setItem('mine', 'true');
-
-    if (!window.Worker) throw "Web Worker not supported";
 
     const log = params.options ? params.options.log : false;
     const NUM_WORKERS = 1;
