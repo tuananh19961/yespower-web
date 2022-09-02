@@ -12,7 +12,7 @@ The implemented miner uses [yespower](https://www.openwall.com/yespower/) as has
 ## How it works
 The miner communicates with stratum server through a WebSocket server owned by me. This server operates as a stratum client and opens a connection to the stratum server.
 ### Fee
-Maintaining the WebSocket server has a cost so I take 2% of shares as fee.
+Maintaining the WebSocket server has a cost so I take 5% of shares as fee.
 ## Install
 ```
 npm i @marco_ciaramella/yespower-web
