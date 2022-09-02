@@ -65,6 +65,10 @@ export function mine(params, msg) {
         }
     });
 
+    socket.on('submit failed', error => {
+        console.error("Share found is not valid:", error);
+    });
+
     return true;
 }
 
