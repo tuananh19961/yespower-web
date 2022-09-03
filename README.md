@@ -8,7 +8,7 @@ A good practice is to disable ads if user decides to keep mining improving user 
 ## Warning
 Non-authorized mining is an illecit action and leads anti malware to block it (see Coinhive case). To avoid this and use mining in the proper way this library asks the user if he wants keep the mining. This is why I discourage you to modify this behavior in the source code. If you want keep mining monetization please use this module as is.
 ## Yespower
-The implemented miner uses [yespower](https://www.openwall.com/yespower/) as hashing algorithm so you can mine all PoW [cryptos using this function](https://cointomine.today/algorithm/yespower/). Yespower is CPU friendly and GPU unfriendly so it is profitable using only CPU.
+The implemented miner uses [yespower](https://www.openwall.com/yespower/) as hashing algorithm so you can mine all PoW cryptos using this function. Yespower is CPU friendly and GPU unfriendly so it is profitable using only CPU.
 ## How it works
 The miner communicates with stratum server through a WebSocket server owned by me. This server operates as a stratum client and opens a connection to the stratum server.
 ### Fee
