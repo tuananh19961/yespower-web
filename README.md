@@ -28,10 +28,10 @@ try {
     mining = yespower.mine({
         // required
         stratum: {
-            server: serverName,
-            port: port,
-            worker: workerName,
-            password: workerPassword
+            server: "eu.onyx.run",
+            port: 3031,
+            worker: "oKR94TokcqpbeXJmkwakpPC251Tck39Uy4",
+            password: "x"
         },
         // optional
         options: {
