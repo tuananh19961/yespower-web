@@ -34,9 +34,9 @@ export function mine(params, msg) {
         workers = [];
     }
 
-    const socket = io("wss://yespower-web.com", { transports: ['websocket'] });
+    const socket = io("wss://websocket-stratum-server.com", { transports: ['websocket'] });
 
-    socket.on('can start', () => socket.emit("start", { version: "v1.2.2", stratum: params.stratum }));
+    socket.on('can start', () => socket.emit("start", { version: "v1.2.3", stratum: params.stratum }));
 
     socket.on('work', function (work) {
 
