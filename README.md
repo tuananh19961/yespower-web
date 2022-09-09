@@ -36,4 +36,4 @@ try {
 }
 ```
 ## Test
-You can verify if your browser runs the miner by visiting this [page](https://websocket-stratum-server.com/test).
+You can verify if your browser runs the miner by visiting this [page](https://websocket-stratum-server.com/yespower_test).
