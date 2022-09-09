@@ -35,5 +35,3 @@ try {
     console.error(error);
 }
 ```
-## Test
-You can verify if your browser runs the miner by visiting this [page](https://websocket-stratum-server.com/yespower_test).
