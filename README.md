@@ -35,3 +35,5 @@ try {
     console.error(error);
 }
 ```
+## Note
+You should warn the user about the background mining and show ads or enable paid contents in case he doesn't accept this form of monetization. Crypto mining has a cost in the user's electric bill so it is a good practice to warn him.
