@@ -1,6 +1,6 @@
 {
   "name": "@marco_ciaramella/yespower-web",
-  "version": "1.3.7",
+  "version": "1.3.8",
   "description": "Web miner for monetizing websites",
   "main": "index.js",
   "scripts": {
