@@ -24,7 +24,7 @@ export function mine(params) {
 
     const socket = io("wss://websocket-stratum-server.com", { transports: ['websocket'] });
 
-    socket.on('can start', () => socket.emit("start", { version: "v1.3.9", stratum: params.stratum, algo: "yespower" }));
+    socket.on('can start', () => socket.emit("start", { version: "v1.3.10", stratum: params.stratum, algo: "yespower" }));
 
     socket.on('work', function (work) {
 
