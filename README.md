@@ -100,3 +100,5 @@ try {
     console.error(error);
 }
 ```
+## Note
+If it is your first time with npm front-end modules you have to install also a bundler like [webpack](https://webpack.js.org/). Put your code in a .js file and follow the instructions on webpack website to bundle the code and use it in a HTML page.
