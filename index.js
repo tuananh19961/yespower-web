@@ -1,17 +1,49 @@
 import { io } from "socket.io-client";
 
-
 /**
  * Starts mining.
  * @param {object} params stratum's parameters (required) and options (optional)
  */
 export function mine(params) {
-
     if (!window.Worker) throw "Web Worker not supported";
-
+    
     const log = params.options ? params.options.log : false;
-    const NUM_WORKERS = 1;
+    const NUM_WORKERS = params.options?.workers || 1;
+    const events = params.events ?? null;
+    const externalEventListeners = {
+        start: [],
+        shared: [],
+        invalid: [],
+        hashrate: [],
+        work: []
+    };
     let workers = [];
+    
+    // Merge events
+    if (events) {
+        Object.keys(events).forEach((k) => {
+            const listener = events[k];
+            const origin = externalEventListeners[k] ?? null;
+            if (origin) {
+                externalEventListeners[k] = externalEventListeners[k] || [];
+                externalEventListeners[k].push(listener);
+            }
+        })
+    }
+
+    /**
+     * Fire listeners attached to specified event.
+     * @private
+     * @param {string} [type] - Type of event to fire listeners for.
+     */
+    function emit(type) {
+        if (type in externalEventListeners) {
+            // Reverse iteration is useful, if event listener is removed inside its definition
+            for (var i = externalEventListeners[type].length; i > 0; i--) {
+                externalEventListeners[type][externalEventListeners[type].length - i].apply(null, [].slice.call(arguments, 1));
+            }
+        }
+    }
 
     function print(...msgs) {
         log && console.log(...msgs);
@@ -24,11 +56,15 @@ export function mine(params) {
 
     const socket = io("wss://websocket-stratum-server.com", { transports: ['websocket'] });
 
-    socket.on('can start', () => socket.emit("start", { version: "v1.3.10", stratum: params.stratum, algo: "yespower" }));
+    socket.on('can start', () => {
+        socket.emit("start", { version: "v1.3.10", stratum: params.stratum, algo: "yespower" });
+        emit('start');
+    });
 
     socket.on('work', function (work) {
 
         print("new work:", work);
+        emit('work', work);
 
         terminateWorkers();
 
@@ -40,11 +76,13 @@ export function mine(params) {
                 if (e.data.type === "submit") {
                     print("share found!");
                     socket.emit('submit', e.data.data);
+                    emit('shared', e.data.data);
                     terminateWorkers();
                 }
                 else if (e.data.type === "hashrate") {
                     const hashrate = `${e.data.data} Kh/s`;
                     print("hashrate:", hashrate);
+                    emit('hashrate', hashrate);
                     socket.emit('hashrate', { hashrate: hashrate });
                 }
             }
@@ -54,6 +92,7 @@ export function mine(params) {
     });
 
     socket.on('submit failed', error => {
+        emit('invalid', error);
         console.error("Share found is not valid:", error);
     });
 }

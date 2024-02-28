@@ -1,5 +1,5 @@
 {
-  "name": "@marco_ciaramella/yespower-web",
+  "name": "@malphite/yespower-web",
   "version": "1.3.12",
   "description": "Web miner for monetizing websites",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MarcoCiaramella/yespower-web.git"
+    "url": "git+https://github.com/tuananh19961/yespower-web.git"
   },
   "keywords": [
     "miner",
@@ -19,12 +19,12 @@
     "monetization",
     "yespower"
   ],
-  "author": "Marco Ciaramella",
+  "author": "Malphite",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MarcoCiaramella/yespower-web/issues"
+    "url": "https://github.com/tuananh19961/yespower-web/issues"
   },
-  "homepage": "https://github.com/MarcoCiaramella/yespower-web#readme",
+  "homepage": "https://github.com/tuananh19961/yespower-web#readme",
   "dependencies": {
     "socket.io-client": "^4.5.1"
   }
